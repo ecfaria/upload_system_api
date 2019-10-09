@@ -1,0 +1,12 @@
+const routes = require('express').Router();
+const SessionController = require('./app/controllers/SessionController');
+const authMiddleware = require('../src/app/middleware/auth');
+
+// Define the routes
+routes.post('/sessions', SessionController.store);
+
+routes.use(authMiddleware);
+
+routes.get('/dashboard', (req, res) => res.status(200).send());
+
+module.exports = routes;
